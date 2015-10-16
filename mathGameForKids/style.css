@@ -43,10 +43,12 @@ h2{
 	width: 100px;
 	height: 50px;
 		
-margin-left: 30%;
+
 	text-align: center;
 	color: white;
 	font:20px bold courier;
+	float:right;
+
 
 }
 
