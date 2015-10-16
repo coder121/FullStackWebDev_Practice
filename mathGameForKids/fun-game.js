@@ -1,8 +1,9 @@
-var div = document.getElementById("textDiv");
+
 var scoreCounter=0;
+
 function loadup(){
 	var level=get_radio_value()
-   
+   var textDiv= document.getElementById("textDiv");
 	  var div = document.getElementById("textDiv");
  var h1=document.createElement("h1");
  
@@ -10,7 +11,7 @@ function loadup(){
  var quizDiv=document.createElement("div");
  quizDiv.id="quizDiv"
  var body=document.createElement("body")
-div.appendChild(quizDiv)
+textDiv.appendChild(quizDiv)
 
 startQuiz(quizDiv,level)
    
@@ -32,10 +33,9 @@ else if(level=="difficult"){
      x=Math.floor(Math.random()*250);
  y=Math.floor(Math.random()*250);
 }
-    var timer=document.getElementById("timer")
-    timer.style.display="block";
-    div.appendChild(timer)
-    testing();
+ var timer=document.getElementById("timer")
+   
+    
      var p=document.createElement("p")
     var someString=x+"+"+y+"="
     p.textContent=someString
@@ -48,6 +48,9 @@ else if(level=="difficult"){
     submit.type="submit"
     submit.id="submit"
     div.appendChild(submit)
+    timer.style.display="block";
+    div.appendChild(timer)
+    testing();
     submit.onclick=function check(){
     		if(textfield.value==(x+y)){
     			alert("Awesome thats right!")
@@ -64,11 +67,10 @@ else if(level=="difficult"){
 }
 function clearDivElements(div){
 	 var theNode = document.getElementById(div.id);
-	
-	 if(theNode.firstChild!=null){ 
-                while (theNode.firstChild) 
-                    theNode.removeChild(theNode.firstChild);
-            }
+	   
+	for (var i=0;i<theNode.childNodes.length;i++){
+         theNode.removeChild(theNode.firstChild);
+    }
             }
 
 
@@ -82,7 +84,7 @@ function get_radio_value() {
           }
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-    setInterval(function () {
+    var time=setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -93,12 +95,17 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
             timer = duration;
+            alert("GAME OVER!!!\nSCORE:"+scoreCounter)
+             clearInterval(time);
         }
     }, 1000);
+   
 }
 
  function testing() {
     var fiveMinutes = 30 * 1,
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+   startTimer(fiveMinutes, display);
+    console.log("jere")
+  
 };
